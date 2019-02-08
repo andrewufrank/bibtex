@@ -1,3 +1,4 @@
+% Encoding: UTF-8
 @InProceedings{alfer2002beginning,
   author =	 {Alfer, Ralf and Thielemann, Henning},
   title =	 {The beginning of everything},
@@ -7,23 +8,28 @@
   month =	 {June},
 },
 
-This is a comment between to BibTeX entries.@Article{thielemann2000foobar,
-  author =	 {Thielemann, Henning},
-  title =	 {Foo Bar},
-  journal =	 {Journal of Irrelevant Applications},
-  subtype =	 {popular},
-  month =	 {December},
-  year =	 2000,
-  pages =	 {123--321},
-  volume =	 88,
-  number =	 7,
+This is a comment between to BibTeX entries.
+
+@Article{thielemann2000foobar,
+  author  = {Thielemann, Henning},
+  title   = {Foo Bar},
+  journal = {Journal of Irrelevant Applications},
+  year    = {2000},
+  volume  = {88},
+  number  = {7},
+  pages   = {123--321},
+  month   = {December},
+  groups  = {group1},
+  subtype = {popular},
 }
 ,
+
 @TechReport{thielemann2000prefoobar,
-  author =	 {Thielemann, Henning},
-  title =	 {Before Foo becomes Bar},
-  institution =	 {University of Applied Irrelevance},
-  year =	 2000
+  author      = {Thielemann, Henning},
+  title       = {Before Foo becomes Bar},
+  institution = {University of Applied Irrelevance},
+  year        = {2000},
+  groups      = {group1},
 }
 
 @Article{thielemann2001nonexistence,
@@ -39,36 +45,48 @@ This is a comment between to BibTeX entries.@Article{thielemann2000foobar,
 }
 
 @InProceedings{thielemann2002mass,
-  author =	 {Thielemann, Henning},
-  title =	 {Mess for the Masses},
-  booktitle =	 {Annual conference of the Society of Measurement},
-  year =	 2002,
-  month =	 {September},
+  author    = {Thielemann, Henning},
+  title     = {Mess for the Masses},
+  booktitle = {Annual conference of the Society of Measurement},
+  year      = {2002},
+  month     = {September},
+  groups    = {group1},
 }
 
 @Article{thielemann2002other,
-  author =	 {Thielemann, Henning and others},
-  title =	 {Make things different},
-  journal =	 {The Other Journal},
-  year =	 2002,
-  volume =	 42,
-  number =	 7,
-  pages =	 {271--314},
-  month =	 {January},
+  author  = {Thielemann, Henning and others},
+  title   = {Make things different},
+  journal = {The Other Journal},
+  year    = {2002},
+  volume  = {42},
+  number  = {7},
+  pages   = {271--314},
+  month   = {January},
+  groups  = {group2},
 }
 
 @PhdThesis{thielemann2006diss,
-  author =	 {Thielemann, Henning},
-  title =	 {Equivalence of Foo and Bar with respect to $\|.\|$ and \[\alpha\]},
-  school =	 {University of Applied Irrelevance},
-  year =	 2006,
-  month =	 {March}
+  author = {Thielemann, Henning},
+  title  = {Equivalence of Foo and Bar with respect to $\|.\|$ and \[\alpha\]},
+  school = {University of Applied Irrelevance},
+  year   = {2006},
+  month  = {March},
+  groups = {group1},
 }
 
 @Misc{thielemann2010bibtex,
-  key =		 {haskell, bibtex, natbib},
-  author =	 {Thielemann, Henning and others},
-  title =	 {BibTeX parsing and generation},
+  author       = {Thielemann, Henning and others},
+  title        = {BibTeX parsing and generation},
   howpublished = {\url{http://hackage.haskell.org/package/bibtex}},
-  subtype =	 {program},
+  groups       = {group2},
+  key          = {haskell, bibtex, natbib},
+  subtype      = {program},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:group1\;0\;;
+1 ExplicitGroup:group2\;0\;;
 }

@@ -85,13 +85,29 @@ Parse a BibTeX entry like
 
 .
 -}
+{- fails on
+@Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: groupstree:
+0 AllEntriesGroup:;
+1 ExplicitGroup:group1\;0\;;
+1 ExplicitGroup:group2\;0\;;
+}
+-}
+
 entry :: Parser Entry.T
 entry =
-   do entryType <- char '@' >> identifier
-      braces $
-         liftM2 (Entry.Cons entryType)
-            (Parsec.try bibIdentifier)
-            (comma >> sepEndBy assignment comma)
+   do char '@'
+      entryType <- identifier
+      case entryType of
+        "Comment" -> do
+                        comment
+                        return (Entry.Cons "" "" [] :: Entry.T)
+        _ ->
+                  braces $
+                     liftM2 (Entry.Cons entryType)
+                        (Parsec.try bibIdentifier)
+                        (comma >> sepEndBy assignment comma)
 
 {- |
 Parse an assignment like

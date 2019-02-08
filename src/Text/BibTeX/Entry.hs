@@ -10,7 +10,7 @@ data T =
       identifier :: String,
       fields :: [(String, String)]
    }
-   deriving (Show)
+   deriving (Show, Eq)
 
 {- |
 Convert the name style \"Surname, First name\" into \"First name Surname\".

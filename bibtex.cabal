@@ -1,5 +1,5 @@
 Name:             bibtex
-Version:          0.1.0.6
+Version:          0.1.0.8
 License:          BSD3
 License-File:     LICENSE
 Author:           Henning Thielemann <haskell@henning-thielemann.de>
@@ -11,6 +11,8 @@ Description:
   This package allows parsing, formatting and processing of BibTeX files.
   BibTeX files are databases for literature for the natbib package
   of the LaTeX typesetting system.
+
+    af - 0.1.0.7 fixed for @Comment produced by JabRef
   .
   The package contains two examples:
   .
