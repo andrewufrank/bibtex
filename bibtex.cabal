@@ -64,7 +64,7 @@ Description:
   .
   > TeX capacity exceeded, sorry [save size=5000]
 Tested-With:      GHC==6.12.3
-Cabal-Version:    >=1.6
+Cabal-Version:    >=1.20
 Build-Type:       Simple
 Extra-Source-Files:
   Makefile
@@ -108,6 +108,7 @@ Library
     Text.BibTeX.Entry
     Text.BibTeX.Format
     Text.BibTeX.Parse
+  default-language: Haskell2010
 
 
 Executable       publication-overview
@@ -117,6 +118,7 @@ Executable       publication-overview
   GHC-Options:      -Wall
   Hs-source-dirs:   src
   Main-Is:          Publications.hs
+  default-language: Haskell2010
 
 Executable       hackage-bibtex
   If flag(buildExamples)
@@ -132,3 +134,19 @@ Executable       hackage-bibtex
   GHC-Options:      -Wall
   Hs-source-dirs:   src
   Main-Is:          Hackage.hs
+  default-language: Haskell2010
+
+test-suite bibtexTest
+  type: exitcode-stdio-1.0
+  main-is: bibtexTest.hs
+  other-modules:
+
+  hs-source-dirs:
+      test
+  ghc-options: -Wall
+  build-depends:
+      HTF
+    , QuickCheck
+    , base ==4.*
+    , bibtex
+  default-language: Haskell2010

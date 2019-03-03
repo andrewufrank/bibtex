@@ -2,6 +2,7 @@
 The parsers in this module also skip trailing spaces.
 -}
 module Text.BibTeX.Parse (
+   Parsec.parse,   -- from parsec
    file,
    comment,
    entry,

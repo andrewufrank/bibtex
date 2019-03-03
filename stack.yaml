@@ -1,0 +1,11 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+- ././fromOthers/bibTex
+
+extra-deps:
+
+
+
+resolver: lts-12.26
