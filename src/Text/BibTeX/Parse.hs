@@ -93,6 +93,8 @@ Parse a BibTeX entry like
 0 AllEntriesGroup:;
 1 ExplicitGroup:group1\;0\;;
 1 ExplicitGroup:group2\;0\;;
+
+- fails equally on keys like {author[TUxxx], ...
 }
 -}
 
@@ -178,7 +180,10 @@ Parse a name of a BibTeX entry like @author2010title@.
 bibIdentifier :: Parser String
 bibIdentifier =
    lexeme $
-   liftM2 (:) (alphaNum <|> char '_') (many (alphaNum <|> oneOf "&;:-_.?+/"))
+   liftM2 (:) (alphaNum <|> char '_') (many (alphaNum <|> oneOf "&;:-_.?+/[]"))
+   -- not acceptable in key is " # ' ( ) , = { } %
+    -- but [] are acceptable and used by TU
+    -- parses, but is not included in output
 
 
 {- |

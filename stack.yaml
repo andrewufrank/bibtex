@@ -2,7 +2,7 @@ flags: {}
 extra-package-dbs: []
 packages:
 - '.'
-- ././fromOthers/bibTex
+#- ././fromOthers/bibTex
 
 extra-deps:
 

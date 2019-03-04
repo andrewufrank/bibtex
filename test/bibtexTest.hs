@@ -1,5 +1,4 @@
 -----------------------------------------------------------------------------
---
 -- Module      :   a test for HTF framework
 -- insert {-@ HTF_TESTS @-} for each import
 -----------------------------------------------------------------------------
@@ -55,6 +54,46 @@ test_parse1 = do
 res1 = "[Cons {entryType = \"InProceedings\", identifier = \"alfer2002beginning\", fields = [(\"author\",\"Alfer, R"
 res2 = " {entryType = \"\", identifier = \"\", fields = []},Cons {entryType = \"\", identifier = \"\", fields = []}]"
 -- demonstrates that the comments at end are read as empty bibtex entries
+
+
+test_parse2 = do    -- to check for [TUid] case
+    bibtxt <- readBibTex "publications/tubib.bib"
+    bibparsed <- parseBibTex bibtxt
+--    assertEqual res1 (take 100 . show $ bibparsed)
+    assertEqual resa  ( bibparsed)
+resa =   [Cons{entryType = "InProceedings",
+          T.identifier = "frank09geo[TU11111]",
+          fields =
+            [("author", "Frank, Andrew U."),
+             ("title", "Geo-Ontologies Are Scale Dependent (abstract only)"),
+             ("booktitle",
+              "European Geosciences Union, General Assembly 2009, Session Knowledge and Ontologies"),
+             ("year", "2009"), ("editor", "Pulkkinen, Tuija"),
+             ("url", "http://publik.tuwien.ac.at/files/PubDat-175453.pdf"),
+             ("file", "docs/docs4/4698_GeoOntologies_abstarct_EUG_09.pdf"),
+             ("groups", "authorAF"), ("keywords", "Onto"), ("owner", "frank"),
+             ("timestamp", "2018.11.29")]},
+            Cons{entryType = "", T.identifier = "", fields = []}]
+
+test_getGroup = do    -- to check for [TUid] case
+    bibtxt <- readBibTex "publications/tubib.bib"
+    bibparsed <- parseBibTex bibtxt
+    let selected = filterByGroup "authorAF" bibparsed
+    assertEqual resg  ( selected)
+resg=   [Cons{entryType = "InProceedings",
+          T.identifier = "frank09geo[TU11111]",
+          fields =
+            [("author", "Frank, Andrew U."),
+             ("title", "Geo-Ontologies Are Scale Dependent (abstract only)"),
+             ("booktitle",
+              "European Geosciences Union, General Assembly 2009, Session Knowledge and Ontologies"),
+             ("year", "2009"), ("editor", "Pulkkinen, Tuija"),
+             ("url", "http://publik.tuwien.ac.at/files/PubDat-175453.pdf"),
+             ("file", "docs/docs4/4698_GeoOntologies_abstarct_EUG_09.pdf"),
+             ("groups", "authorAF"), ("keywords", "Onto"), ("owner", "frank"),
+             ("timestamp", "2018.11.29")]}
+        ]
+
 ------------  the functions used
 
 readBibTex :: FilePath ->  IO String
@@ -70,3 +109,20 @@ parseBibTex bib = case  parse (skippingLeadingSpace   Parse.file) "stdin" bib of
 --parseBibTex bib = case Parsec.parse (Parsec.skipMany Parsec.space >> Parse.file) "stdin" bib of
          Left errMsg -> error  (show errMsg)
          Right entries -> return entries
+
+filterByGroup :: String -> [Entry.T] -> [Entry.T]
+ -- select the entries in a group
+filterByGroup groupname entries = filter (elem groupname .getGroup) entries
+
+getGroup :: Entry.T -> [String]
+getGroup e = map snd groupFields
+    where
+        fs = fields e  :: [(String, String)]
+        groupFields = filter (("groups" ==).fst) fs
+
+getBibIdentifier :: [Entry.T] -> [String]
+-- extract the bib identifier from the entries
+--getBibIdentifier es = map T.entryType es
+getBibIdentifier es = map T.identifier es
+
+
